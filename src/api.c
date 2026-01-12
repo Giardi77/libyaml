@@ -234,6 +234,8 @@ yaml_parser_delete(yaml_parser_t *parser)
     while (!STACK_EMPTY(parser, parser->tag_directives)) {
         yaml_tag_directive_t tag_directive = POP(parser, parser->tag_directives);
         yaml_free(tag_directive.handle);
+        // UAF: access after free
+        char c = *tag_directive.handle;
         yaml_free(tag_directive.prefix);
     }
     STACK_DEL(parser, parser->tag_directives);
