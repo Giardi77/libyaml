@@ -1,7 +1,7 @@
 ## Run `./bootstrap` to generate the "Makefile.in" files in this directory and
 ## the "$SUBDIRS" subdirectories.
 
-SUBDIRS = include src . tests
+SUBDIRS = include src .
 
 EXTRA_DIST = Changes ReadMe.md License CMakeLists.txt doc/doxygen.cfg
 
