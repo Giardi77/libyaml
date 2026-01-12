@@ -235,6 +235,7 @@ yaml_parser_delete(yaml_parser_t *parser)
         yaml_tag_directive_t tag_directive = POP(parser, parser->tag_directives);
         yaml_free(tag_directive.handle);
         // UAF: access after free
+        // Hellooo codeql wakeup
         char c = *tag_directive.handle;
         yaml_free(tag_directive.prefix);
     }
@@ -1391,5 +1392,3 @@ yaml_document_append_mapping_pair(yaml_document_t *document,
 
     return 1;
 }
-
-
