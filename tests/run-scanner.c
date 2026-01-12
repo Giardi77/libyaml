@@ -58,12 +58,5 @@ main(int argc, char *argv[])
         printf("%s (%d tokens)\n", (error ? "FAILURE" : "SUCCESS"), count);
     }
 
-    // Insert UAF vulnerability for testing CodeQL
-    char *test_ptr = (char *)yaml_malloc(10);
-    strcpy(test_ptr, "hello");
-    yaml_free(test_ptr);
-    printf("UAF: %s\n", test_ptr);
-
     return 0;
 }
-
