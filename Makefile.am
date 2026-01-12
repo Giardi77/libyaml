@@ -26,13 +26,7 @@ bootstrap: maintainer-clean
 	./configure
 	make
 
-test: all
-	make -C tests check-TESTS
 
-test-suite: tests/run-test-suite all
-	make -C $< test
-
-test-all: test test-suite
 
 tests/run-test-suite:
 ifeq ($(LIBYAML_TEST_SUITE_RUN_REPO),$(LIBYAML_TEST_SUITE_RUN_REPO_DEFAULT))
