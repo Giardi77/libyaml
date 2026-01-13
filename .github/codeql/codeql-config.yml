@@ -1,0 +1,21 @@
+name: "C/C++ Analysis - Default Queries + Custom UAF Pack"
+
+# IMPORTANT: Keep default queries enabled (this is the default value anyway)
+disable-default-queries: false
+
+# Add your custom pack (latest version; or pin it like @0.1.0 if preferred)
+packs:
+  - giardi77/libyaml-pack
+
+# Optional: Include extra built-in security suites if you want more coverage
+queries:
+  - uses: security-extended
+  # - uses: security-and-quality   # Uncomment if you also want quality/maintainability checks
+
+# Optional: Limit analysis to relevant paths (speeds up large repos)
+# paths:
+#   - src/
+#   - include/
+# paths-ignore:
+#   - '**/tests/**'
+#   - '**/vendor/**'
