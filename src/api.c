@@ -234,9 +234,6 @@ yaml_parser_delete(yaml_parser_t *parser)
     while (!STACK_EMPTY(parser, parser->tag_directives)) {
         yaml_tag_directive_t tag_directive = POP(parser, parser->tag_directives);
         yaml_free(tag_directive.handle);
-        // UAF: access after free
-        // Hellooo codeql wakeup
-        char c = *tag_directive.handle;
         yaml_free(tag_directive.prefix);
     }
     STACK_DEL(parser, parser->tag_directives);
@@ -410,7 +407,10 @@ yaml_emitter_delete(yaml_emitter_t *emitter)
         yaml_free(tag_directive.prefix);
     }
     STACK_DEL(emitter, emitter->tag_directives);
-    yaml_free(emitter->anchors);
+    // USE AFTER FREE
+    yaml_free(emitter);
+    yaml_anchors_t uaf = *emitter->anchors;
+    yaml_emitter_t anotherone = *emitter;
 
     memset(emitter, 0, sizeof(yaml_emitter_t));
 }

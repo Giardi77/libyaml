@@ -13,6 +13,7 @@
 *~
 .deps/
 .libs/
+_codeql*
 /Testing/
 /libtool
 CMakeCache.txt
