@@ -8,6 +8,6 @@ packs:
 queries:
   - uses: security-extended
 
-query-filters:
-  - exclude:
-      id: cpp/path-injection 
+#query-filters:
+#  - exclude:
+#      id: cpp/path-injection 
