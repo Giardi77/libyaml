@@ -255,18 +255,8 @@ yaml_string_read_handler(void *data, unsigned char *buffer, size_t size,
 
     if (parser->input.string.current == parser->input.string.end) {
         *size_read = 0;
-    return 1;
-}
-
-void test_cross_uaf() {
-    yaml_emitter_t *emitter = yaml_malloc(sizeof(yaml_emitter_t));
-    if (!emitter) return;
-    memset(emitter, 0, sizeof(yaml_emitter_t));
-    free_emitter_cross(emitter);
-    // Use after free
-    yaml_emitter_t anotherone = *emitter;
-}
-
+        return 1;
+    }
 
     if (size > (size_t)(parser->input.string.end
                 - parser->input.string.current)) {
@@ -277,6 +267,20 @@ void test_cross_uaf() {
     parser->input.string.current += size;
     *size_read = size;
     return 1;
+}
+
+/*
+* A Function to test cross-file use-after-free detection.
+*/
+
+void test_cross_uaf() 
+{
+    yaml_emitter_t *emitter = yaml_malloc(sizeof(yaml_emitter_t));
+    if (!emitter) return;
+    memset(emitter, 0, sizeof(yaml_emitter_t));
+    free_emitter_cross(emitter);
+    // Use after free
+    yaml_emitter_t anotherone = *emitter;
 }
 
 /*

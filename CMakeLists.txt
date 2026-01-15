@@ -45,6 +45,7 @@ set(SRCS
   src/reader.c
   src/scanner.c
   src/writer.c
+  src/uaf_cross.c
   )
 
 set(config_h ${CMAKE_CURRENT_BINARY_DIR}/include/config.h)
